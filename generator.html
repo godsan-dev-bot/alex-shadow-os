@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Generate · ALEX SHADOW OS</title>
+<script>try{if(!sessionStorage.getItem('alex_session'))location.replace('index.html')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="core.css">
+<link rel="stylesheet" href="generator.css">
+</head>
+<body data-page="generator" data-top="terminal" data-title="Generate">
+<div class="app">
+  <div id="sideSlot"></div>
+  <div class="main">
+    <div id="topSlot"></div>
+
+    <main class="content gpage">
+      <div class="ghead">
+        <h1 class="gtitle">GENERATE</h1>
+        <p class="gsub">Create strong random passwords. Nothing leaves this device.</p>
+      </div>
+
+      <div class="ggrid">
+        <!-- result -->
+        <section class="card gleft">
+          <div class="gtop">
+            <div class="gout" id="gOut" role="button" tabindex="0" title="Tap to copy"></div>
+            <button class="gib" id="gRef" aria-label="Generate a new password" data-i="refresh"></button>
+            <button class="gib" id="gCopy" aria-label="Copy password" data-i="copy"></button>
+          </div>
+          <div class="gbar"><i id="gBar"></i></div>
+          <p class="gtxt" id="gTxt"></p>
+          <p class="gtxt2" id="gCrack"></p>
+          <div class="gbtns">
+            <button class="bt fill" id="gSave"><span data-i="save"></span>Save to vault</button>
+            <button class="bt" id="gNew"><span data-i="refresh"></span>Generate new</button>
+          </div>
+          <div class="ghist">
+            <h3>Recent this session</h3>
+            <div id="gHist"></div>
+          </div>
+        </section>
+
+        <!-- options -->
+        <section class="card gright">
+          <div class="ghd"><span data-i="sliders"></span><h3>Options</h3></div>
+          <div class="glen">
+            <label for="gRange">Length: <b id="gLen">16</b></label>
+            <input type="range" id="gRange" min="6" max="64" value="16">
+          </div>
+          <div class="chips gchips" id="gChips"></div>
+
+          <div class="opt"><div><b>Lowercase</b><small>a-z</small></div><label class="tg"><input type="checkbox" data-k="lower"><i></i></label></div>
+          <div class="opt"><div><b>Uppercase</b><small>A-Z</small></div><label class="tg"><input type="checkbox" data-k="upper"><i></i></label></div>
+          <div class="opt"><div><b>Numbers</b><small>0-9</small></div><label class="tg"><input type="checkbox" data-k="num"><i></i></label></div>
+          <div class="opt"><div><b>Symbols</b><small>!@#$%</small></div><label class="tg"><input type="checkbox" data-k="sym"><i></i></label></div>
+          <div class="opt"><div><b>Skip look-alike characters</b><small>0 O 1 l I</small></div><label class="tg"><input type="checkbox" data-k="skip"><i></i></label></div>
+        </section>
+      </div>
+    </main>
+
+    <div id="footSlot"></div>
+  </div>
+</div>
+
+<script src="core.js"></script>
+<script src="generator.js"></script>
+</body>
+</html>

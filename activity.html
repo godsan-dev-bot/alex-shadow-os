@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Activity Log · ALEX SHADOW OS</title>
+<script>try{if(!sessionStorage.getItem('alex_session'))location.replace('index.html')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="core.css">
+<link rel="stylesheet" href="activity.css">
+</head>
+<body data-page="activity" data-top="terminal" data-title="Activity Log">
+<div class="app">
+  <div id="sideSlot"></div>
+  <div class="main">
+    <div id="topSlot"></div>
+
+    <main class="content apage">
+      <div class="ahd">
+        <div>
+          <h1 class="atitle">ACTIVITY LOG</h1>
+          <p class="asub" id="aCount">0 events recorded on this device</p>
+        </div>
+        <button class="ab" id="aClear">Clear log</button>
+      </div>
+
+      <section class="card abox">
+        <div class="atools">
+          <div class="achips" id="aChips" role="tablist" aria-label="Filter activity"></div>
+          <label class="asearch"><span data-i="search"></span><input id="aq" type="search" placeholder="Search activity..." autocomplete="off"></label>
+        </div>
+        <div id="aList"></div>
+        <div class="amore"><button class="ab" id="aMore" hidden>Show more</button></div>
+      </section>
+    </main>
+
+    <div id="footSlot"></div>
+  </div>
+</div>
+
+<script src="core.js"></script>
+<script src="activity.js"></script>
+</body>
+</html>
