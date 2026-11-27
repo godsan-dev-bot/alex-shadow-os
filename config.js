@@ -7,8 +7,8 @@
    ===================================================================== */
 window.ALEX_CONFIG = {
   backend: 'supabase',
-  supabaseUrl: 'PASTE-YOUR-PROJECT-URL-HERE',      // Supabase > Project Settings > API > Project URL
-  supabaseKey: 'PASTE-YOUR-ANON-KEY-HERE'          // Supabase > Project Settings > API > anon / publishable key
+  supabaseUrl: 'ceksnrhbugvjpvbgzuvh',      // Supabase > Project Settings > API > Project URL
+  supabaseKey: 'sb_publishable_ReXIuX16DjWSn0n_9g9u2A_5bl1XR6C'          // Supabase > Project Settings > API > anon / publishable key
 };
 
 /* ---------------------------------------------------------------------
