@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Settings · ALEX SHADOW OS</title>
+<script>try{if(!sessionStorage.getItem('alex_session'))location.replace('index.html')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="core.css">
+<link rel="stylesheet" href="settings.css">
+</head>
+<body data-page="settings" data-top="terminal" data-title="Settings">
+<div class="app">
+  <div id="sideSlot"></div>
+  <div class="main">
+    <div id="topSlot"></div>
+
+    <main class="content tpage">
+      <div class="thd">
+        <h1 class="ttitle">SETTINGS</h1>
+        <p class="tsub">Changes are saved automatically.</p>
+      </div>
+
+      <!-- Profile -->
+      <section class="card tcard">
+        <div class="thead"><span data-i="user"></span><h3>Profile</h3></div>
+        <div class="trow"><div><b>Display name</b><small>Shown in the welcome message and avatar.</small></div>
+          <input class="tinp" id="pName" type="text" maxlength="24" autocomplete="off" spellcheck="false"></div>
+        <div class="trow"><div><b>Username</b><small>The name you sign in with. Change passkeys on the Security page.</small></div>
+          <div class="tval" id="pUser">—</div></div>
+      </section>
+
+      <!-- Appearance -->
+      <section class="card tcard">
+        <div class="thead"><span data-i="sliders"></span><h3>Appearance</h3></div>
+        <div class="trow"><div><b>Theme</b><small>Dark is the default. Light is easier to read in bright sunlight.</small></div>
+          <select class="tsel" id="aTheme"><option value="dark">Dark</option><option value="light">Light</option></select></div>
+        <div class="trow"><div><b>Matrix background</b><small>Animated code rain behind every page.</small></div>
+          <label class="tg"><input type="checkbox" data-pref="matrix" data-type="bool"><i></i></label></div>
+        <div class="trow"><div><b>Matrix speed</b><small>How fast the code rain falls.</small></div>
+          <select class="tsel" data-pref="speed"><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option></select></div>
+        <div class="trow"><div><b>Glow effects</b><small>Neon glow on text, borders and buttons. Turn off for a flatter, calmer look.</small></div>
+          <label class="tg"><input type="checkbox" data-pref="glow" data-type="bool"><i></i></label></div>
+        <div class="trow"><div><b>Animations</b><small>Panel animations, transitions and the matrix rain. Turn off to save battery.</small></div>
+          <label class="tg"><input type="checkbox" data-pref="motion" data-type="bool"><i></i></label></div>
+      </section>
+
+      <!-- Notifications -->
+      <section class="card tcard">
+        <div class="thead"><span data-i="bell"></span><h3>Notifications</h3></div>
+        <div class="trow"><div><b>Notification badge</b><small>Show the red counter on the bell for new activity.</small></div>
+          <label class="tg"><input type="checkbox" data-pref="badge" data-type="bool"><i></i></label></div>
+        <div class="trow"><div><b>Pop-up messages</b><small>Short confirmations such as “Password copied”.</small></div>
+          <label class="tg"><input type="checkbox" data-pref="toasts" data-type="bool"><i></i></label></div>
+      </section>
+
+      <!-- Preferences -->
+      <section class="card tcard">
+        <div class="thead"><span data-i="gear"></span><h3>Preferences</h3></div>
+        <div class="trow"><div><b>Clock format</b><small>Used by the clock in the top bar and by Last Access.</small></div>
+          <select class="tsel" data-pref="hour12" data-type="bool-str"><option value="false">24-hour</option><option value="true">12-hour</option></select></div>
+        <div class="trow"><div><b>Start page</b><small>The page that opens right after you sign in.</small></div>
+          <select class="tsel" data-pref="start"><option value="dashboard">Dashboard</option><option value="vault">Vault</option><option value="generator">Generator</option><option value="security">Security</option><option value="settings">Settings</option></select></div>
+        <div class="trow"><div><b>Passwords per page</b><small>How many entries the Vault list shows before it adds a new page.</small></div>
+          <select class="tsel" data-pref="perPage" data-type="num"><option value="8">8</option><option value="12">12</option><option value="20">20</option><option value="50">50</option></select></div>
+        <div class="trow"><div><b>Default category</b><small>Pre-selected when you add a new password.</small></div>
+          <select class="tsel" id="pCat" data-pref="defCat"></select></div>
+        <div class="trow"><div><b>Default password length</b><small>The starting length on the Generator page.</small></div>
+          <select class="tsel" id="pLen"><option>8</option><option>12</option><option>16</option><option>20</option><option>24</option><option>32</option><option>48</option><option>64</option></select></div>
+        <div class="trow"><div><b>Confirm before moving to Trash</b><small>Ask first when you delete a password. It can always be restored from the Recycle Bin.</small></div>
+          <label class="tg"><input type="checkbox" data-pref="confirmDel" data-type="bool"><i></i></label></div>
+      </section>
+
+      <!-- Reset -->
+      <section class="card tcard">
+        <div class="thead"><span data-i="refresh"></span><h3>Reset</h3></div>
+        <div class="trow"><div><b>Reset settings</b><small>Put every setting on this page back to its default. Your passwords and security settings are not touched.</small></div>
+          <button class="tb danger" id="rReset"><span data-i="refresh"></span>Reset to defaults</button></div>
+      </section>
+    </main>
+
+    <div id="footSlot"></div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="settings.js"></script>
+</body>
+</html>

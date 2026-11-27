@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>First-time setup · ALEX SHADOW OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:#000;color:#fff;font-family:'Poppins','Segoe UI',sans-serif}
+body{display:grid;place-items:center;padding:20px;background:radial-gradient(700px 400px at 50% 0,rgba(0,255,26,.14),transparent 70%),#000}
+.card{width:min(480px,100%);padding:30px 28px;border:1.5px solid rgba(0,255,26,.5);border-radius:22px;background:rgba(2,14,5,.92);box-shadow:0 0 30px rgba(0,255,26,.2),inset 0 0 40px rgba(0,255,26,.05)}
+h1{font-family:Orbitron,sans-serif;font-weight:800;font-size:26px;letter-spacing:.08em;color:#2bff3f;text-shadow:0 0 14px rgba(0,255,26,.6)}
+.sub{margin:8px 0 22px;color:#a6c2ab;font-size:14px;line-height:1.55}
+label{display:block;margin-bottom:14px}
+label span{display:block;margin-bottom:6px;font-size:12px;letter-spacing:.1em;color:#2bff3f}
+input{width:100%;height:48px;padding:0 14px;border:1.5px solid rgba(0,255,26,.45);border-radius:10px;background:rgba(0,255,26,.05);color:#fff;font:inherit;font-size:15px;outline:0}
+input:focus{box-shadow:0 0 16px rgba(0,255,26,.45);border-color:#00ff1a}
+button{width:100%;height:50px;margin-top:6px;border:0;border-radius:10px;background:#00ff1a;color:#031004;font:700 15px Poppins,sans-serif;letter-spacing:.06em;cursor:pointer;box-shadow:0 0 22px rgba(0,255,26,.5)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.meter{height:6px;margin:-6px 0 14px;border-radius:4px;background:rgba(0,255,26,.15);overflow:hidden}.meter i{display:block;height:100%;width:0;background:#2bff3f;transition:.25s}
+.msg{min-height:22px;margin:4px 0 10px;font-size:13.5px;color:#ff6070}.msg.ok{color:#2bff3f}
+a{color:#2bff3f}
+.note{margin-top:16px;font-size:12.5px;color:#7f9985;line-height:1.55}
+</style>
+</head>
+<body>
+<main class="card">
+  <h1>FIRST-TIME SETUP</h1>
+  <p class="sub">Create the admin account <b>angel</b>. This works only once, while no account exists, and needs the setup code (the one you put in <code>supabase_setup.sql</code>, or the one <code>server.py</code> prints when you run it locally).</p>
+  <form id="f" autocomplete="off">
+    <label><span>SETUP CODE</span><input id="code" type="password" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <label><span>CHOOSE YOUR SIGN-IN PASSKEY (8+ CHARACTERS)</span><input id="p1" type="password" autocomplete="new-password" autocapitalize="off" spellcheck="false"></label>
+    <div class="meter"><i id="m"></i></div>
+    <label><span>CONFIRM PASSKEY</span><input id="p2" type="password" autocomplete="new-password" autocapitalize="off" spellcheck="false"></label>
+    <p class="msg" id="msg" role="alert"></p>
+    <button id="go" type="submit">Create admin account</button>
+  </form>
+  <p class="note">Your passkey is never sent anywhere as typed. After you sign in you will also create a separate Wallet Password that locks your wallet.</p>
+</main>
+
+<script src="config.js"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id), msg = $('msg'), form = $('f'), go = $('go');
+  const say = (t, ok) => { msg.textContent = t; msg.className = 'msg' + (ok ? ' ok' : ''); };
+  const hex = u => [...u].map(x => x.toString(16).padStart(2, '0')).join('');
+  const b64 = u => btoa(String.fromCharCode.apply(null, u));
+  const unb64 = t => Uint8Array.from(atob(t), c => c.charCodeAt(0));
+  async function deriveAuth(pass, saltB64) {
+    const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveBits']);
+    const bits = new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: unb64(saltB64), iterations: 150000, hash: 'SHA-256' }, base, 512));
+    return hex(bits.slice(32));
+  }
+  const strength = p => Math.min(p.length, 16) / 16 * 50 + [/[a-z]/, /[A-Z]/, /\d/, /[^A-Za-z0-9]/].filter(r => r.test(p)).length * 12.5;
+  $('p1').addEventListener('input', e => { const s = strength(e.target.value); $('m').style.width = s + '%'; $('m').style.background = s < 50 ? '#ff2a3d' : s < 75 ? '#ffb020' : '#2bff3f'; });
+
+  function stop(html) { form.hidden = true; document.querySelector('.sub').innerHTML = html; }
+  if (!(window.crypto && crypto.subtle)) return stop('Open this site over <b>https</b> (GitHub Pages) or <b>http://localhost</b>, so the browser can encrypt your vault.');
+  ALEX_BACKEND.request('GET', '/api/setup_status').then(r => {
+    if (r.status === 503) stop('Fill in <b>config.js</b> first (your Supabase URL and key), then reload this page.');
+    else if (r.ok && !r.data.needs_setup) stop('Setup is already done. <a href="index.html">Go to sign in</a>.');
+  }).catch(() => stop('Cannot reach the database. Check <b>config.js</b> and your internet connection.'));
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const code = $('code').value, p1 = $('p1').value;
+    if (!code) return say('Enter the setup code.');
+    if (p1.length < 8) return say('The passkey needs at least 8 characters.');
+    if (p1 !== $('p2').value) return say('The passkeys do not match.');
+    go.disabled = true; say('Creating…', true);
+    try {
+      const salt = b64(crypto.getRandomValues(new Uint8Array(16))), auth = await deriveAuth(p1, salt);
+      const r = await ALEX_BACKEND.request('POST', '/api/setup', { code, salt, auth });
+      if (r.status === 200) return stop('Admin account <b>angel</b> created. <a href="index.html">Go to sign in</a> and use your new passkey.');
+      say(r.status === 429 ? 'Too many wrong codes. Try again in a few minutes.' : (r.data.error || 'Could not create the account.')); go.disabled = false;
+    } catch (err) { say('Cannot reach the database.'); go.disabled = false; }
+  });
+})();
+</script>
+</body>
+</html>

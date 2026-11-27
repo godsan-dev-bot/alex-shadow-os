@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Security · ALEX SHADOW OS</title>
+<script>try{if(!sessionStorage.getItem('alex_session'))location.replace('index.html')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="core.css">
+<link rel="stylesheet" href="security.css">
+</head>
+<body data-page="security" data-top="terminal" data-title="Security">
+<div class="app">
+  <div id="sideSlot"></div>
+  <div class="main">
+    <div id="topSlot"></div>
+
+    <main class="content spage">
+      <div class="shd">
+        <h1 class="stitle">SECURITY</h1>
+        <p class="ssub">Check your password health and control how the vault protects itself.</p>
+      </div>
+
+      <!-- overview -->
+      <section class="sover">
+        <article class="card score">
+          <div class="gwrap">
+            <svg class="gauge" viewBox="0 0 140 140" aria-hidden="true"><circle class="gt" cx="70" cy="70" r="58"/><circle class="gv" id="gArc" cx="70" cy="70" r="58"/></svg>
+            <div class="gnum"><b id="gScore">0</b><span>%</span></div>
+          </div>
+          <div class="glabel" id="gLabel">—</div>
+          <p class="gnote" id="gNote"></p>
+        </article>
+        <div class="tiles">
+          <article class="card tile"><span class="t-ic" data-i="shield"></span><b id="tWeak">0</b><small>Weak passwords</small></article>
+          <article class="card tile"><span class="t-ic" data-i="copy"></span><b id="tReused">0</b><small>Reused passwords</small></article>
+          <article class="card tile"><span class="t-ic" data-i="clock"></span><b id="tOld">0</b><small id="tOldL">Older than 90 days</small></article>
+          <article class="card tile"><span class="t-ic" data-i="shieldchk"></span><b id="tStrong">0</b><small>Strong passwords</small></article>
+        </div>
+      </section>
+
+      <!-- Security settings -->
+      <section class="card scard">
+        <div class="shead"><span data-i="lock"></span><h3>Security</h3></div>
+        <div class="srow"><div><b>Auto-lock</b><small>Lock your wallet this long after you unlock it, even while you are using the site.</small></div>
+          <select class="ssel" id="sAuto"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="30">30 minutes</option></select></div>
+        <div class="srow"><div><b>Lock when I leave the app</b><small>Lock the vault as soon as you switch tabs, switch apps or turn the screen off.</small></div>
+          <label class="tg"><input type="checkbox" id="sHide"><i></i></label></div>
+        <div class="srow"><div><b>Password age warning</b><small>Flag passwords that have not been changed for this long.</small></div>
+          <select class="ssel" id="sAge"><option value="0">Never</option><option value="30">30 days</option><option value="60">60 days</option><option value="90">90 days</option><option value="180">180 days</option><option value="365">365 days</option></select></div>
+        <div class="srow"><div><b>Hide revealed passwords after</b><small>A password you show with the eye button hides itself again.</small></div>
+          <select class="ssel" id="sReveal"><option value="3">3 seconds</option><option value="6">6 seconds</option><option value="10">10 seconds</option><option value="15">15 seconds</option></select></div>
+        <div class="srow"><div><b>Clear clipboard after copying</b><small>Wipe the clipboard 30 seconds after you copy a password.</small></div>
+          <label class="tg"><input type="checkbox" id="sClip"><i></i></label></div>
+        <div class="srow"><div><b>Wallet Password</b><small id="pkNote">The password that opens your wallet. Only you know it, and it cannot be recovered if you forget it.</small></div>
+          <button class="sb" id="sPass"><span data-i="key"></span>Change Wallet Password</button></div>
+      </section>
+
+      <!-- Manage users -->
+      <section class="card scard">
+        <div class="shead"><span data-i="user"></span><h3>Manage Users</h3><button class="sb fill" id="xAddUser" hidden><span data-i="plus2"></span>Add user</button></div>
+        <div id="users"></div>
+      </section>
+
+      <!-- Data -->
+      <section class="card scard">
+        <div class="shead"><span data-i="download"></span><h3>Data</h3></div>
+        <div class="srow"><div><b>Private vault <span class="pvchip" id="pvState">…</span></b><small id="pvNote">Your wallet belongs only to you. It is encrypted in your browser with a key made from your own Wallet Password and stored as unreadable data, so other users — the admin included — cannot read it.</small></div></div>
+        <div class="srow"><div><b>Export vault</b><small>Download all passwords as a JSON backup.</small></div><button class="sb" id="dExport"><span data-i="download"></span>Export</button></div>
+        <div class="srow"><div><b>Clear activity log</b><small>Remove every entry from the Activity Log.</small></div><button class="sb" id="dClear">Clear log</button></div>
+        <div class="srow"><div><b>Erase wallet</b><small>Delete all passwords, Trash and activity from your wallet. You keep your Wallet Password.</small></div><button class="sb danger" id="dErase"><span data-i="trashline"></span>Erase everything</button></div>
+      </section>
+    </main>
+
+    <div id="footSlot"></div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="security.js"></script>
+</body>
+</html>

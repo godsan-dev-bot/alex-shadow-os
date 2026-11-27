@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dashboard · ALEX SHADOW OS</title>
+<script>try{if(!sessionStorage.getItem('alex_session'))location.replace('index.html')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="core.css">
+</head>
+<body data-page="dashboard" data-top="search" data-title="Dashboard">
+<div class="app">
+
+  <div id="sideSlot"></div>
+
+  <!-- ===== MAIN ===== -->
+  <div class="main">
+    <div id="topSlot"></div>
+
+    <main class="content">
+      <!-- hero -->
+      <section class="card hero">
+        <span class="hero-shield" data-i="shieldlock"></span>
+        <span class="vr"></span>
+        <div class="hero-txt">
+          <h2>Welcome Back, <em id="wName">Godsan</em>!</h2>
+          <p>Your digital vault is secure and ready.</p>
+        </div>
+        <div class="spacer"></div>
+        <blockquote class="quote">“Security is not an option,<br>It’s a lifestyle.”<cite>— Shadow OS</cite></blockquote>
+        <div class="globe" aria-hidden="true">
+          <svg class="lands" viewBox="0 0 600 300" width="600" height="300">
+            <g id="land" fill="#3fe453" opacity=".9">
+              <path d="M30 95c20-28 62-32 84-12s10 46-15 56-50 30-60 5-24-28-9-49z"/>
+              <path d="M150 175c26-10 52 6 46 36s-30 52-46 32-16-46 0-68z"/>
+              <path d="M195 65c22-22 62-16 74 10s-20 38-46 32-42-20-28-42z"/>
+            </g>
+            <use href="#land" x="300"/>
+          </svg>
+          <i class="grid"></i>
+        </div>
+      </section>
+
+      <!-- stats -->
+      <section class="stats">
+        <article class="card stat">
+          <span class="s-ico" data-i="key"></span>
+          <div class="s-body"><span class="lbl">Total Passwords</span>
+            <div class="val"><b id="vTotal">0</b><small id="vDelta"></small></div></div>
+          <svg class="spark" id="sparkPass"></svg>
+        </article>
+
+        <article class="card stat">
+          <span class="s-ico" data-i="shieldchk"></span>
+          <div class="s-body"><span class="lbl">Security Score</span>
+            <div class="val"><b id="vScore">0%</b><small id="sDelta"></small></div></div>
+          <div class="meter"><i id="scoreBar"></i></div>
+        </article>
+
+        <article class="card stat">
+          <span class="s-ico" data-i="clock"></span>
+          <div class="s-body"><span class="lbl">Last Access</span>
+            <div class="val sm" id="lastAccess">—</div>
+            <small class="muted" id="uptime">Session 00:00:00</small></div>
+          <svg class="wave" id="wave" viewBox="0 0 300 44"><path fill="none" stroke="#2bff3f" stroke-width="2"/><circle r="4" cx="75" fill="#2bff3f"/></svg>
+        </article>
+
+        <article class="card stat status" id="cStatus" role="button" tabindex="0" title="Tap to lock your wallet now">
+          <span class="s-ico sm" id="stIco" data-i="lock"></span>
+          <div class="s-body"><span class="lbl">Vault Status</span>
+            <div class="val sm" id="stText">Locked</div>
+            <small class="ok" id="stSub">Fully Protected</small></div>
+          <span class="big-lock" id="stBig" data-i="lock"></span>
+        </article>
+      </section>
+
+      <!-- vault + right column -->
+      <section class="cols">
+        <article class="card vault">
+          <div class="c-head"><span class="c-ico" data-i="folder"></span><h3>Your Password Vault</h3><a href="#" class="va" data-page="vault">View All<span data-i="arrow"></span></a></div>
+          <div class="vlist" id="vlist"></div>
+        </article>
+
+        <div class="right">
+          <article class="card qa">
+            <div class="c-head"><span class="c-ico" data-i="bolt"></span><h3>Quick Actions</h3></div>
+            <div class="qa-grid">
+              <button class="q" data-q="add"><span data-i="plus"></span>Add Password</button>
+              <button class="q" data-q="gen"><span data-i="cube"></span>Generate Password</button>
+              <button class="q" data-q="sec"><span data-i="shieldchk"></span>View Security</button>
+            </div>
+          </article>
+
+          <article class="card act">
+            <div class="c-head"><span class="c-ico" data-i="pulse"></span><h3>Recent Activity</h3><a href="#" class="va" data-page="activity">View All<span data-i="arrow"></span></a></div>
+            <ul id="acts"></ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div id="footSlot"></div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

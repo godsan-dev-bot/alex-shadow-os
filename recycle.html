@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recycle Bin · ALEX SHADOW OS</title>
+<script>try{if(!sessionStorage.getItem('alex_session'))location.replace('index.html')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="core.css">
+<link rel="stylesheet" href="recycle.css">
+</head>
+<body data-page="recycle" data-top="terminal" data-title="Recycle Bin">
+<div class="app">
+  <div id="sideSlot"></div>
+  <div class="main">
+    <div id="topSlot"></div>
+
+    <main class="content rpage">
+      <div class="rhd">
+        <div>
+          <h1 class="rtitle">RECYCLE BIN</h1>
+          <p class="rsub" id="rCount">0 deleted passwords. Items are removed for good after 30 days.</p>
+        </div>
+        <div class="racts">
+          <button class="rb" id="rRestoreAll"><span data-i="refresh"></span>Restore all</button>
+          <button class="rb danger" id="rEmpty"><span data-i="trashline"></span>Empty Trash</button>
+        </div>
+      </div>
+
+      <section class="card rbox" id="rBox"></section>
+    </main>
+
+    <div id="footSlot"></div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="recycle.js"></script>
+</body>
+</html>
